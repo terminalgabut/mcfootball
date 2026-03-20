@@ -1,0 +1,55 @@
+/* ===============================
+⚽ MATCH CARD
+=============================== */
+
+.match-card {
+background: linear-gradient(
+135deg,
+var(--color-primary),
+var(--color-secondary)
+);
+
+border-radius: var(--radius-lg);
+
+padding: var(--space-xl);
+
+color: #ffffff;
+}
+
+/* ===============================
+🧩 TEAMS
+=============================== */
+
+.match-teams {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.match-team {
+text-align: center;
+}
+
+.match-team img {
+width: 48px;
+height: 48px;
+margin-bottom: 6px;
+}
+
+/* ===============================
+🎯 SCORE
+=============================== */
+
+.match-score {
+text-align: center;
+}
+
+.match-score-value {
+font-size: 28px;
+font-weight: 700;
+}
+
+.match-minute {
+font-size: 12px;
+opacity: 0.8;
+}
