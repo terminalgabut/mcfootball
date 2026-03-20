@@ -2,6 +2,53 @@ import { getPlayers } from './supabaseFetch.js';
 
 const { createApp, ref, onMounted } = Vue;
 
+/* ===============================
+⚽ MATCH CARD (INLINE)
+=============================== */
+const MatchCard = {
+props: ['teamA', 'teamB', 'scoreA', 'scoreB', 'minute'],
+
+template: `
+<div class="match-card">
+<div class="match-teams">
+
+    <div class="match-team">
+      <img :src="teamA.logo" />
+      <div>{{ teamA.name }}</div>
+    </div>
+
+    <div class="match-score">
+      <div class="match-score-value">
+        {{ scoreA }} : {{ scoreB }}
+      </div>
+      <div class="match-minute">
+        {{ minute }}'
+      </div>
+    </div>
+
+    <div class="match-team">
+      <img :src="teamB.logo" />
+      <div>{{ teamB.name }}</div>
+    </div>
+
+  </div>
+</div>
+
+`
+};
+
+/* ===============================
+📜 MATCH LOG
+=============================== */
+const MatchLog = {
+props: ['logs'],
+
+template: "<div class="card"> <div class="log"> <div v-for="(item, i) in logs" :key="i" class="log-item"> {{ item }} </div> </div> </div>"
+};
+
+/* ===============================
+🎮 APP
+=============================== */
 const App = {
 components: {
 MatchCard,
@@ -49,18 +96,12 @@ let interval = null;
 
 
 
-/* ===============================
-   🎲 SHUFFLE (SAFE)
-=============================== */
 function shuffle(arr) {
   return [...arr].sort(() => 0.5 - Math.random());
 }
 
 
 
-/* ===============================
-   🧠 CREATE TEAMS
-=============================== */
 function createTeams() {
   const shuffled = shuffle(players.value);
 
@@ -76,9 +117,6 @@ function createTeams() {
 
 
 
-/* ===============================
-   💪 TEAM STRENGTH
-=============================== */
 function getStrength(team) {
   return team.players.reduce((sum, p) => {
     return sum + (parseInt(p.overall) || 50);
@@ -87,18 +125,12 @@ function getStrength(team) {
 
 
 
-/* ===============================
-   📜 LOG
-=============================== */
 function log(text) {
   logs.value.unshift(text);
 }
 
 
 
-/* ===============================
-   🎮 START MATCH
-=============================== */
 function startMatch() {
   if (interval) return;
 
@@ -133,9 +165,6 @@ function startMatch() {
 
 
 
-/* ===============================
-   🔄 RESET MATCH
-=============================== */
 function resetMatch() {
   if (interval) {
     clearInterval(interval);
@@ -152,9 +181,6 @@ function resetMatch() {
 
 
 
-/* ===============================
-   🚀 INIT
-=============================== */
 onMounted(async () => {
   players.value = await getPlayers(100);
   createTeams();
