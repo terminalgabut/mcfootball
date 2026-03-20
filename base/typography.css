@@ -1,0 +1,50 @@
+/* base/typography.css
+
+/* ===============================
+✍️ TYPOGRAPHY
+=============================== */
+
+body {
+font-family: 'Inter', system-ui, -apple-system, sans-serif;
+font-size: 14px;
+line-height: 1.5;
+
+background: var(--color-bg);
+color: var(--color-text);
+}
+
+/* ===============================
+📝 HEADINGS
+=============================== */
+
+h1 {
+font-size: 24px;
+font-weight: 700;
+}
+
+h2 {
+font-size: 20px;
+font-weight: 600;
+}
+
+h3 {
+font-size: 16px;
+font-weight: 600;
+}
+
+/* ===============================
+📄 TEXT
+=============================== */
+
+p {
+color: var(--color-text-muted);
+}
+
+/* ===============================
+🔗 LINKS
+=============================== */
+
+a {
+color: var(--color-primary);
+text-decoration: none;
+}
