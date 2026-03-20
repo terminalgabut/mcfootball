@@ -1,0 +1,53 @@
+/* base/variables.css
+
+:root {
+
+/* ===============================
+🎨 COLORS
+=============================== */
+
+--color-bg: #0f172a;
+--color-surface: #111827;
+--color-card: #1e293b;
+
+--color-primary: #7c3aed;
+--color-secondary: #9333ea;
+--color-accent: #22c55e;
+
+--color-text: #f1f5f9;
+--color-text-muted: #94a3b8;
+
+/* ===============================
+📏 SPACING
+=============================== */
+
+--space-xs: 4px;
+--space-sm: 8px;
+--space-md: 12px;
+--space-lg: 16px;
+--space-xl: 24px;
+
+/* ===============================
+🔲 RADIUS
+=============================== */
+
+--radius-sm: 8px;
+--radius-md: 12px;
+--radius-lg: 16px;
+--radius-xl: 20px;
+
+/* ===============================
+🌫️ SHADOW
+=============================== */
+
+--shadow-sm: 0 2px 6px rgba(0,0,0,0.2);
+--shadow-md: 0 10px 30px rgba(0,0,0,0.4);
+
+/* ===============================
+⚡ TRANSITION
+=============================== */
+
+--transition-fast: 0.15s ease;
+--transition-normal: 0.25s ease;
+
+}
