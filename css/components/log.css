@@ -1,0 +1,15 @@
+/* ===============================
+📜 MATCH LOG
+=============================== */
+
+.log {
+max-height: 220px;
+overflow-y: auto;
+}
+
+.log-item {
+font-size: 13px;
+color: var(--color-text-muted);
+
+margin-bottom: 6px;
+}
