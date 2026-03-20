@@ -47,6 +47,50 @@ template: "<div class="card"> <div class="log"> <div v-for="(item, i) in logs" :
 };
 
 /* ===============================
+⚽ MATCH CARD
+=============================== */
+const MatchCard = {
+props: ['teamA', 'teamB', 'scoreA', 'scoreB', 'minute'],
+
+template: `
+<div class="match-card">
+<div class="match-teams">
+
+    <div class="match-team">
+      <img :src="teamA.logo" />
+      <div>{{ teamA.name }}</div>
+    </div>
+
+    <div class="match-score">
+      <div class="match-score-value">
+        {{ scoreA }} : {{ scoreB }}
+      </div>
+      <div class="match-minute">
+        {{ minute }}'
+      </div>
+    </div>
+
+    <div class="match-team">
+      <img :src="teamB.logo" />
+      <div>{{ teamB.name }}</div>
+    </div>
+
+  </div>
+</div>
+
+`
+};
+
+/* ===============================
+📜 MATCH LOG
+=============================== */
+const MatchLog = {
+props: ['logs'],
+
+template: "<div class="card"> <div class="log"> <div  v-for="(item, i) in logs"  :key="i"  class="log-item" > {{ item }} </div> </div> </div>"
+};
+
+/* ===============================
 🎮 APP
 =============================== */
 const App = {
