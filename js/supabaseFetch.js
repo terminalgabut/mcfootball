@@ -1,8 +1,7 @@
 import supabase from './supabase.js';
 
-/* ===============================
-📥 GET PLAYERS
-=============================== /
+
+// 📥 GET PLAYERS
 export async function getPlayers(limit = 50) {
 const { data, error } = await supabase
 .from('players')
@@ -17,9 +16,8 @@ return [];
 return data ?? [];
 }
 
-/* ===============================
-🔍 GET PLAYER BY ID
-=============================== /
+
+// 🔍 GET PLAYER BY ID
 export async function getPlayerById(id) {
 const { data, error } = await supabase
 .from('players')
@@ -35,9 +33,8 @@ return null;
 return data;
 }
 
-/* ===============================
-🔎 SEARCH PLAYER
-=============================== /
+
+// 🔎 SEARCH PLAYER
 export async function searchPlayers(keyword) {
 const { data, error } = await supabase
 .from('players')
@@ -53,9 +50,8 @@ return [];
 return data ?? [];
 }
 
-/* ===============================
-🏟️ GET PLAYERS BY CLUB
-=============================== /
+
+// 🏟️ GET PLAYERS BY CLUB
 export async function getPlayersByClub(clubName) {
 const { data, error } = await supabase
 .from('players')
@@ -87,9 +83,8 @@ return [];
 return data ?? [];
 }
 
-/* ===============================
-🎲 RANDOM PLAYERS (FOR TEAM)
-=============================== /
+
+// 🎲 RANDOM PLAYERS (FOR TEAM)
 export async function getRandomPlayers(count = 22) {
 const { data, error } = await supabase
 .from('players')
