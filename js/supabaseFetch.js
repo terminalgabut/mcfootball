@@ -1,6 +1,3 @@
-// js/supabaseFetch.js
-
-
 import supabase from './supabase.js';
 
 /* ===============================
@@ -17,7 +14,7 @@ console.error('❌ getPlayers error:', error.message);
 return [];
 }
 
-return data || [];
+return data ?? [];
 }
 
 /* ===============================
@@ -53,7 +50,7 @@ console.error('❌ searchPlayers error:', error.message);
 return [];
 }
 
-return data || [];
+return data ?? [];
 }
 
 /* ===============================
@@ -71,12 +68,10 @@ console.error('❌ getPlayersByClub error:', error.message);
 return [];
 }
 
-return data || [];
+return data ?? [];
 }
 
-/* ===============================
-⭐ TOP PLAYERS (BY OVERALL)
-=============================== /
+// ⭐ TOP PLAYERS (BY OVERALL)
 export async function getTopPlayers(limit = 20) {
 const { data, error } = await supabase
 .from('players')
@@ -89,7 +84,7 @@ console.error('❌ getTopPlayers error:', error.message);
 return [];
 }
 
-return data || [];
+return data ?? [];
 }
 
 /* ===============================
@@ -105,8 +100,10 @@ console.error('❌ getRandomPlayers error:', error.message);
 return [];
 }
 
-// shuffle
-const shuffled = data.sort(() => 0.5 - Math.random());
+if (!data) return [];
+
+// shuffle aman (tidak mutate langsung)
+const shuffled = [...data].sort(() => 0.5 - Math.random());
 
 return shuffled.slice(0, count);
 }
