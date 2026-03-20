@@ -1,0 +1,43 @@
+/* ===============================
+📏 SPACING
+=============================== */
+
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+
+/* ===============================
+🔄 FLEX SHORTCUT
+=============================== */
+
+.flex-center {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+/* ===============================
+🎯 TEXT
+=============================== */
+
+.text-center {
+text-align: center;
+}
+
+.text-muted {
+color: var(--color-text-muted);
+}
+
+/* ===============================
+👁️ STATE
+=============================== */
+
+.hidden {
+display: none;
+}
+
+.w-full {
+width: 100%;
+}
