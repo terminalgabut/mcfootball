@@ -1,66 +1,7 @@
-const { createApp, ref } = Vue;
+import { getPlayers } from './supabaseFetch.js';
 
-/* ===============================
-⚽ MATCH CARD COMPONENT
-=============================== */
-const MatchCard = {
-props: ['teamA', 'teamB', 'scoreA', 'scoreB', 'minute'],
+const { createApp, ref, onMounted } = Vue;
 
-template: `
-<div class="match-card">
-
-  <div class="match-teams">
-
-    <div class="match-team">
-      <img :src="teamA.logo" />
-      <div>{{ teamA.name }}</div>
-    </div>
-
-    <div class="match-score">
-      <div class="match-score-value">
-        {{ scoreA }} : {{ scoreB }}
-      </div>
-
-      <div class="match-minute">
-        {{ minute }}'
-      </div>
-    </div>
-
-    <div class="match-team">
-      <img :src="teamB.logo" />
-      <div>{{ teamB.name }}</div>
-    </div>
-
-  </div>
-
-</div>
-
-`
-};
-
-/* ===============================
-📜 LOG COMPONENT
-=============================== */
-const MatchLog = {
-props: ['logs'],
-
-template: `
-<div class="card">
-
-  <div class="log">
-    <div v-for="(item, i) in logs" :key="i" class="log-item">
-      {{ item }}
-    </div>
-  </div>
-
-</div>
-
-`
-};
-
-/* ===============================
-🎮 ROOT APP
-=============================== */
 const App = {
 components: {
 MatchCard,
@@ -71,6 +12,7 @@ template: `
 <div class="container">
 
   <match-card
+    v-if="teamA.players.length"
     :teamA="teamA"
     :teamB="teamB"
     :scoreA="scoreA"
@@ -89,22 +31,37 @@ template: `
 `,
 
 setup() {
+const players = ref([]);
+
+const teamA = ref({ name: "Team A", logo: "", players: [] });
+const teamB = ref({ name: "Team B", logo: "", players: [] });
+
 const minute = ref(0);
 const scoreA = ref(0);
 const scoreB = ref(0);
 const logs = ref([]);
 
-const teamA = ref({
-  name: "Man United",
-  logo: "https://cdn.sofifa.net/teams/11/30.png"
-});
-
-const teamB = ref({
-  name: "Bayern",
-  logo: "https://cdn.sofifa.net/teams/21/30.png"
-});
-
 let interval = null;
+
+function shuffle(arr) {
+  return arr.sort(() => 0.5 - Math.random());
+}
+
+function createTeams() {
+  const shuffled = shuffle([...players.value]);
+
+  teamA.value.players = shuffled.slice(0, 11);
+  teamB.value.players = shuffled.slice(11, 22);
+
+  teamA.value.name = teamA.value.players[0]?.club || "Team A";
+  teamB.value.name = teamB.value.players[0]?.club || "Team B";
+}
+
+function getStrength(team) {
+  return team.players.reduce((sum, p) => {
+    return sum + parseInt(p.overall || 50);
+  }, 0);
+}
 
 function log(text) {
   logs.value.unshift(text);
@@ -112,6 +69,9 @@ function log(text) {
 
 function startMatch() {
   if (interval) return;
+
+  const strengthA = getStrength(teamA.value);
+  const strengthB = getStrength(teamB.value);
 
   interval = setInterval(() => {
     minute.value++;
@@ -122,14 +82,15 @@ function startMatch() {
       return;
     }
 
-    const r = Math.random();
+    const chanceA = Math.random() * strengthA;
+    const chanceB = Math.random() * strengthB;
 
-    if (r < 0.08) {
+    if (chanceA > strengthB * 0.85) {
       scoreA.value++;
       log(minute.value + "' ⚽ " + teamA.value.name + " Goal");
-    } 
-    
-    else if (r < 0.16) {
+    }
+
+    if (chanceB > strengthA * 0.85) {
       scoreB.value++;
       log(minute.value + "' ⚽ " + teamB.value.name + " Goal");
     }
@@ -137,17 +98,20 @@ function startMatch() {
   }, 500);
 }
 
+onMounted(async () => {
+  players.value = await getPlayers(100);
+  createTeams();
+});
+
 return {
+  teamA,
+  teamB,
   minute,
   scoreA,
   scoreB,
   logs,
-  teamA,
-  teamB,
   startMatch
 };
 
 }
 };
-
-createApp(App).mount('#app');
