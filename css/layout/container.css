@@ -1,0 +1,22 @@
+/* layout/container.css
+
+/* ===============================
+📦 CONTAINER
+=============================== */
+
+.container {
+width: 100%;
+max-width: 420px;
+
+margin: 0 auto;
+padding: var(--space-lg);
+}
+
+/* ===============================
+📱 FULL WIDTH (OPTIONAL)
+=============================== */
+
+.container-fluid {
+width: 100%;
+padding: var(--space-lg);
+}
