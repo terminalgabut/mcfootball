@@ -1,0 +1,35 @@
+/* ===============================
+🧱 GRID BASE
+=============================== */
+
+.grid {
+display: grid;
+}
+
+/* ===============================
+📐 COLUMNS
+=============================== */
+
+.grid-2 {
+grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+grid-template-columns: repeat(3, 1fr);
+}
+
+/* ===============================
+🔀 GAP
+=============================== */
+
+.grid-gap-sm {
+gap: var(--space-sm);
+}
+
+.grid-gap-md {
+gap: var(--space-md);
+}
+
+.grid-gap-lg {
+gap: var(--space-lg);
+}
