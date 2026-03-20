@@ -1,22 +1,34 @@
 /* ===============================
-🔌 SUPABASE CLIENT
+🔌 SUPABASE (ESM)
 =============================== */
 
-// pastikan script CDN sudah ada di index.html:
-// <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+// import langsung dari CDN (ESM)
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+/* ===============================
+🔐 CONFIG
+=============================== */
 
 const SUPABASE_URL = 'https://YOUR_PROJECT_ID.supabase.co';
 const SUPABASE_ANON_KEY = 'YOUR_ANON_PUBLIC_KEY';
 
 /* ===============================
-🚀 CREATE CLIENT
+🚀 CLIENT
 =============================== */
-const supabase = window.supabase.createClient(
+
+const supabase = createClient(
 SUPABASE_URL,
-SUPABASE_ANON_KEY
+SUPABASE_ANON_KEY,
+{
+auth: {
+persistSession: true,
+autoRefreshToken: true
+}
+}
 );
 
 /* ===============================
 📤 EXPORT
 =============================== */
+
 export default supabase;
