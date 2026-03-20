@@ -1,0 +1,14 @@
+/* components/card.css
+
+/* ===============================
+🧱 CARD
+=============================== */
+
+.card {
+background: var(--color-card);
+border-radius: var(--radius-lg);
+
+padding: var(--space-lg);
+
+box-shadow: var(--shadow-md);
+}
