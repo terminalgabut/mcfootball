@@ -1,0 +1,45 @@
+/* base/reset.css
+
+/* ===============================
+🔄 RESET
+=============================== */
+
+*,
+*::before,
+*::after {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+html,
+body {
+height: 100%;
+}
+
+body {
+text-rendering: optimizeLegibility;
+-webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas {
+display: block;
+max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+font: inherit;
+outline: none;
+}
+
+button {
+border: none;
+background: none;
+cursor: pointer;
+}
